@@ -54,5 +54,6 @@ Not working/Bugs:
 * varunchitre15
 * xen0n
 * Zormax (4pda, add EngineerMode)
-* and others I might have forgotten to include# android_device_Infinix_x510_3.10.72
+* and others I might have forgotten to include
+
 # android_device_Infinix_x510_3.10.72
