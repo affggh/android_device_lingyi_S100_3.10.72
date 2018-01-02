@@ -11,7 +11,7 @@
     <item name="dsp.audio">100</item>
     <item name="dsp.video">50</item>
     <item name="camera.flashlight">0.1</item>
-    <item name="camera.avg">0.1</item
+    <item name="camera.avg">0.1</item>
     <item name="radio.active">200</item>
     <item name="radio.scanning">10</item>
     <item name="gps.on">50</item>
