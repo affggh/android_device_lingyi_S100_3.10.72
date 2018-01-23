@@ -116,11 +116,11 @@ persist.sys.force_highendgfx=true
 # MTK bits
 #
 ro.mediatek.chip_ver=S01
-ro.mediatek.version.release=ALPS.L1.MP6.V2_CKT6580.WE.L_P25
+ro.mediatek.version.release=ALPS.L1.MP6.V2_RGK6580.WEG.L_P2
 ro.mediatek.version.branch=L1.MP6
 ro.mediatek.version.sdk=4
 ro.mediatek.platform=MT6580
-ro.mediatek.project.path=device/ckt/ckt6580_we_l
+ro.mediatek.project.path=device/ratech/d5110_infinix
 
 ro.mtk_audenh_support=1
 ro.mtk_wapi_support=1

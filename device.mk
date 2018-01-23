@@ -74,10 +74,12 @@ PRODUCT_PACKAGES += \
 	libblisrc32
 
 PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/configs/media_codecs.xml:system/etc/custom.conf \
 	$(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
 	$(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml \
+	$(LOCAL_PATH)/configs/media_profiles.xml:system/etc/mtklog-config.prop \
 	$(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf
-
+		
 # Digital Restrictions Management
 # many many many segfaults, disable for now
 #PRODUCT_PACKAGES += \
@@ -170,10 +172,6 @@ PRODUCT_PACKAGES += \
 #PRODUCT_SYSTEM_SERVER_JARS += \
 #	com.cyanogenmod.keyhandler
 
-# Keylayout
-PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/configs/mtk-kpd.kl:system/usr/keylayout/mtk-kpd.kl
-
 # Thermal
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/.ht120.mtc:system/etc/.tp/.ht120.mtc \
@@ -196,6 +194,11 @@ PRODUCT_COPY_FILES += \
 # Hack for disable deep sleep reboots
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/99wakelock_for_no_reboots:system/etc/init.d/99wakelock_for_no_reboots
+
+#  
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/configs/custom.conf:system/etc/custom.conf \
+	$(LOCAL_PATH)/configs/mtklog-config.prop:system/etc/mtklog-config.prop
 
 # MTK rc script
 PRODUCT_COPY_FILES += \
