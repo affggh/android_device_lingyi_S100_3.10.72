@@ -16,7 +16,7 @@ Battery | 2200 mAh
 Display | 5" 1280 x 720 px
 Camera  | Back 8MPx, Front 2MPx, LED Flash
 
-![DEXP](https://www.techzim.co.zw/wp-content/uploads/2015/08/Infinix-4248-875433-3-zoom.jpg "Infinix HOT2 x510")
+![DEXP](https://www.techzim.co.zw/wp-content/uploads/2015/08/infinix-4248-875433-3-zoom.jpg "Infinix HOT2 x510")
 
 Working:
 - Wi-Fi
