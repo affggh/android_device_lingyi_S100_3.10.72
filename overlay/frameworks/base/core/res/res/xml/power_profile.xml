@@ -10,8 +10,6 @@
     <item name="wifi.scan">100</item>
     <item name="dsp.audio">100</item>
     <item name="dsp.video">50</item>
-    <item name="camera.flashlight">0.1</item>
-    <item name="camera.avg">0.1</item>
     <item name="radio.active">200</item>
     <item name="radio.scanning">10</item>
     <item name="gps.on">50</item>
@@ -38,5 +36,5 @@
         <value>185</value>
         <value>119</value>>
     </array>
-    <item name="battery.capacity">2200</item>
+    <item name="battery.capacity">5000</item>
 </device>

@@ -10,7 +10,7 @@ MYABSPATH=$(readlink -f "$0")
  		PATCHTARGET=$(echo $PATCHTARGET | sed 's/_/\//')
  		if [ -d "$CMBASE/$PATCHTARGET" ]; then break; fi
  	done
- 	echo "Application $PATCHNAME -> $PATCHTARGET"
+ 	echo "Apply $PATCHNAME -> $PATCHTARGET"
  	cd "$CMBASE/$PATCHTARGET" || exit 1
  	git apply -v "$PATCHBASE/$PATCHNAME"/* || exit 1
  	cd "$CMBASE"

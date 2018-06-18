@@ -17,6 +17,7 @@
 for flavor in eng userdebug user; do
     add_lunch_combo "full_x510-${flavor}"
     add_lunch_combo "lineage_x510-${flavor}"
+    add_lunch_combo "dot_x510-${flavor}"
     add_lunch_combo "aicp_x510-${flavor}"
 done
 

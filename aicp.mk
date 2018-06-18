@@ -18,9 +18,9 @@ $(call inherit-product, device/Infinix/x510/device_x510.mk)
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := x510
 PRODUCT_NAME := aicp_x510
-PRODUCT_BRAND := infinix
+PRODUCT_BRAND := Infinix
 PRODUCT_MODEL := Infinix x510
-PRODUCT_MANUFACTURER := INFINIX
+PRODUCT_MANUFACTURER := Infinix
 
 # SuperSU
 PRODUCT_COPY_FILES += \

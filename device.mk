@@ -1,4 +1,3 @@
-
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # The gps config appropriate for this device
@@ -8,19 +7,23 @@ $(call inherit-product-if-exists, vendor/Infinix/x510/x510-vendor.mk)
 
 LOCAL_PATH := device/Infinix/x510
 
+# Overlay
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
+
+# Screen density
+PRODUCT_AAPT_CONFIG := normal
+PRODUCT_AAPT_PREF_CONFIG := xhdpi
+PRODUCT_CHARACTERISTICS := default
+
+# Boot animation
+TARGET_SCREEN_HEIGHT := 1280
+TARGET_SCREEN_WIDTH := 720
 
 ifeq ($(TARGET_PREBUILT_KERNEL),)
 	LOCAL_KERNEL := $(LOCAL_PATH)/kernel
 else
 	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 endif
-
-# Boot animation
-# Select the 720-width one; despite the variables' names, they seem to be
-# used by bootanimation only.
-TARGET_SCREEN_HEIGHT := 1280
-TARGET_SCREEN_WIDTH := 720
 
 PRODUCT_PACKAGES += \
 	libxlog
@@ -77,18 +80,13 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
 	$(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml \
 	$(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf
-		
+
 # Digital Restrictions Management
-# many many many segfaults, disable for now
 #PRODUCT_PACKAGES += \
 #	com.google.widevine.software.drm.xml \
-#	libdrmctaplugin \
 #	libdrmmtkplugin \
 #	libdrmwvmplugin \
-#	libwvm \
-#	# libdrmmtkutil -- pulled in by libwvm
-#	# libwvdrm_L3 libWVStreamControlAPI_L3 -- pulled in by libdrmwvmplugin
-#	# libdrmmtkwhitelist -- pulled in by libdrmmtkutil
+#	libwvm
 
 # Wifi
 PRODUCT_PACKAGES += \
@@ -109,11 +107,7 @@ PRODUCT_PACKAGES += \
 	audio.a2dp.default
 
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/configs/bluetooth/auto_pair_blacklist.conf:system/etc/bluetooth/auto_pair_blacklist.conf \
-	$(LOCAL_PATH)/configs/bluetooth/auto_pair_devlist.conf:system/etc/bluetooth/auto_pair_devlist.conf \
-	$(LOCAL_PATH)/configs/bluetooth/btconfig.xml:system/etc/bluetooth/btconfig.xml \
-	$(LOCAL_PATH)/configs/bluetooth/bt_did.conf:system/etc/bluetooth/bt_did.conf \
-	$(LOCAL_PATH)/configs/bluetooth/bt_stack.conf:system/etc/bluetooth/bt_stack.conf
+	$(LOCAL_PATH)/configs/bt_did.conf:system/etc/bluetooth/bt_did.conf
 
 # RIL
 PRODUCT_PACKAGES += \
@@ -138,17 +132,13 @@ PRODUCT_COPY_FILES += \
 
 # GPS
 PRODUCT_COPY_FILES += \
-	 $(LOCAL_PATH)/configs/agps_profiles_conf2.xml:system/etc/agps_profiles_conf2.xml \
-	 $(LOCAL_PATH)/configs/slp_conf:system/etc/slp_conf
+	$(LOCAL_PATH)/configs/agps_profiles_conf2.xml:system/etc/agps_profiles_conf2.xml \
+	$(LOCAL_PATH)/configs/epo.conf:system/etc/epo.conf \
+	$(LOCAL_PATH)/configs/mnl.prop:system/etc/mnl.prop
 
 PRODUCT_PACKAGES += \
 	gps.mt6580 \
-	mnld \
-	libmnl \
-	wifi2agps \
-	libwifi2agps \
-	mtk_agpsd \
-	slpd
+	mtk_agpsd
 
 # Torch
 PRODUCT_PACKAGES += \
@@ -162,6 +152,16 @@ PRODUCT_PACKAGES += \
 #PRODUCT_PACKAGES += \
 #	EngineerMode
 
+# FM Radio
+PRODUCT_PACKAGES += \
+	FMRadio \
+	libfmcust \
+	libfmmt6580
+
+# Snap
+PRODUCT_PACKAGES += \
+    Snap
+
 # Keyhandler & Gestures
 #PRODUCT_PACKAGES += \
 #	com.cyanogenmod.keyhandler \
@@ -169,6 +169,11 @@ PRODUCT_PACKAGES += \
 
 #PRODUCT_SYSTEM_SERVER_JARS += \
 #	com.cyanogenmod.keyhandler
+
+# Keylayout
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/configs/mtk-kpd.kl:system/usr/keylayout/mtk-kpd.kl \
+	$(LOCAL_PATH)/configs/mtk-tpd.kl:system/usr/keylayout/mtk-tpd.kl
 
 # Thermal
 PRODUCT_COPY_FILES += \
@@ -178,80 +183,83 @@ PRODUCT_COPY_FILES += \
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/root/fstab.mt6580:root/fstab.mt6580 \
-	$(LOCAL_PATH)/root/twrp.fstab:recovery/root/etc/twrp.fstab \
-	$(LOCAL_PATH)/root/init.mt6580.rc:root/init.mt6580.rc \
-	$(LOCAL_PATH)/root/init.mt6580.usb.rc:root/init.mt6580.usb.rc \
-	$(LOCAL_PATH)/root/init.recovery.mt6580.rc:root/init.recovery.mt6580.rc \
-	$(LOCAL_PATH)/root/init.6580.modem.rc:root/init.6580.modem.rc \
-	$(LOCAL_PATH)/root/init.project.rc:root/init.project.rc \
-	$(LOCAL_PATH)/root/ueventd.mt6580.rc:root/ueventd.mt6580.rc \
-	$(LOCAL_PATH)/root/sbin/busybox:root/sbin/busybox \
+	$(LOCAL_PATH)/rootdir/fstab.mt6580:root/fstab.mt6580 \
+	$(LOCAL_PATH)/rootdir/twrp.fstab:recovery/root/etc/twrp.fstab \
+	$(LOCAL_PATH)/rootdir/init.mt6580.rc:root/init.mt6580.rc \
+	$(LOCAL_PATH)/rootdir/init.mt6580.usb.rc:root/init.mt6580.usb.rc \
+	$(LOCAL_PATH)/rootdir/init.recovery.mt6580.rc:root/init.recovery.mt6580.rc \
+	$(LOCAL_PATH)/rootdir/init.mt6580.modem.rc:root/init.mt6580.modem.rc \
+	$(LOCAL_PATH)/rootdir/init.project.rc:root/init.project.rc \
+	$(LOCAL_PATH)/rootdir/ueventd.mt6580.rc:root/ueventd.mt6580.rc \
+	$(LOCAL_PATH)/rootdir/sbin/busybox:root/sbin/busybox \
 	$(LOCAL_KERNEL):kernel
+
+# Hack for kernel
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/kernel:obj/KERNEL_OBJ/arch/arm/boot/zImage
 
 # Hack for disable deep sleep reboots
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/99wakelock_for_no_reboots:system/etc/init.d/99wakelock_for_no_reboots
 
-#  
-PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/configs/custom.conf:system/etc/custom.conf \
-	$(LOCAL_PATH)/configs/mtklog-config.prop:system/etc/mtklog-config.prop
-
 # MTK rc script
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/root/etc/atrace.rc:system/etc/init/atrace.rc \
-	$(LOCAL_PATH)/root/etc/audioserver.rc:system/etc/init/audioserver.rc \
-	$(LOCAL_PATH)/root/etc/drmserver.rc:system/etc/init/drmserver.rc \
-	$(LOCAL_PATH)/root/etc/mediacodec.rc:system/etc/init/mediacodec.rc \
-	$(LOCAL_PATH)/root/etc/mediadrmserver.rc:system/etc/init/mediadrmserver.rc \
-	$(LOCAL_PATH)/root/etc/mediaserver.rc:system/etc/init/mediaserver.rc
+	$(LOCAL_PATH)/rootdir/etc/atrace.rc:system/etc/init/atrace.rc \
+	$(LOCAL_PATH)/rootdir/etc/audioserver.rc:system/etc/init/audioserver.rc \
+	$(LOCAL_PATH)/rootdir/etc/drmserver.rc:system/etc/init/drmserver.rc \
+	$(LOCAL_PATH)/rootdir/etc/mediacodec.rc:system/etc/init/mediacodec.rc \
+	$(LOCAL_PATH)/rootdir/etc/mediadrmserver.rc:system/etc/init/mediadrmserver.rc \
+	$(LOCAL_PATH)/rootdir/etc/mediaserver.rc:system/etc/init/mediaserver.rc
 
 # Permissions
 PRODUCT_COPY_FILES += \
-	frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
+	$(LOCAL_PATH)/configs/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
 	frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
 	frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
-	frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
-	frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
-	frameworks/native/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.distinct.xml \
-	frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
-	frameworks/native/data/etc/android.hardware.touchscreen.multitouch.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.xml \
-	frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
-	frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
-	frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
-	frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
-	frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
+	frameworks/native/data/etc/android.hardware.camera.xml:system/etc/permissions/android.hardware.camera.xml \
 	frameworks/native/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
 	frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
 	frameworks/native/data/etc/android.hardware.camera.manual_sensor.xml:system/etc/permissions/android.hardware.camera.manual_sensor.xml \
 	frameworks/native/data/etc/android.hardware.camera.manual_postprocessing.xml:system/etc/permissions/android.hardware.camera.manual_postprocessing.xml \
-	frameworks/native/data/etc/android.hardware.camera.raw.xml:system/etc/permissions/android.hardware.camera.raw.xml \
 	frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
-	frameworks/native/data/etc/android.hardware.camera.xml:system/etc/permissions/android.hardware.camera.xml \
-	frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
+	frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
+	frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
+	frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
+	frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
+	frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
+	frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
 	frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
+	frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
+	frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
 	frameworks/native/data/etc/android.software.midi.xml:system/etc/permissions/android.software.midi.xml \
 	frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml
 
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-	ro.secure=0 \
-	ro.adb.secure=0 \
-	ro.allow.mock.location=1 \
-	ro.debuggable=1 \
-	ro.zygote=zygote32 \
-	camera.disable_zsl_mode=1 \
-	ro.mount.fs=EXT4 \
-	persist.sys.usb.config=mtp \
-	ro.hardware=mt6580
-
+ifeq ($(DEBUG_BUILD),true)
 ADDITIONAL_DEFAULT_PROPERTIES += \
 	ro.secure=0 \
 	ro.adb.secure=0 \
 	ro.allow.mock.location=1 \
-	ro.debuggable=1 \
+	ro.debuggable=1
+endif
+
+ADDITIONAL_DEFAULT_PROPERTIES += \
 	persist.service.acm.enable=0 \
 	ro.oem_unlock_supported=1
+
+ifeq ($(DEBUG_BUILD),true)
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+	ro.secure=0 \
+	ro.adb.secure=0 \
+	ro.allow.mock.location=1 \
+	ro.debuggable=1
+endif
+
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+	ro.zygote=zygote32 \
+	camera.disable_zsl_mode=1 \
+	ro.mount.fs=EXT4 \
+	persist.sys.usb.config=mtp,adb \
+	ro.hardware=mt6580
 
 PRODUCT_PROPERTY_OVERRIDES += \
 	persist.sys.timezone=Europe/Minsk \
@@ -259,21 +267,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.product.locale.region=RU \
 	ro.product.locale.language=ru
 
-# Extended JNI checks
-# The extended JNI checks will cause the system to run more slowly, but they can spot a variety of nasty bugs 
-# before they have a chance to cause problems.
-# Default=true for development builds, set by android buildsystem.
+ifeq ($(DEBUG_BUILD),true)
 PRODUCT_PROPERTY_OVERRIDES += \
-	ro.kernel.android.checkjni=0 \
-	dalvik.vm.checkjni=false
+	service.adb.root=1
+endif
 
-# Screen density
-PRODUCT_AAPT_CONFIG := normal
-PRODUCT_AAPT_PREF_CONFIG := xhdpi
-PRODUCT_CHARACTERISTICS := default
-
-$(call inherit-product, build/target/product/full.mk)
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 # never dexopt the keyhandler
 #$(call add-product-dex-preopt-module-config,com.cyanogenmod.keyhandler,disable)
-

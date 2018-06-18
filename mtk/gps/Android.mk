@@ -7,7 +7,7 @@
 # any reproduction, modification, use or disclosure of MediaTek Software,
 # and information contained herein, in whole or in part, shall be strictly prohibited.
 
-# MediaTek Inc. (C) 2016. All rights reserved.
+# MediaTek Inc. (C) 2010. All rights reserved.
 #
 # BY OPENING THIS FILE, RECEIVER HEREBY UNEQUIVOCALLY ACKNOWLEDGES AND AGREES
 # THAT THE SOFTWARE/FIRMWARE AND ITS DOCUMENTATIONS ("MEDIATEK SOFTWARE")
@@ -31,6 +31,7 @@
 # The following software/firmware and/or related documentation ("MediaTek Software")
 # have been modified by MediaTek Inc. All revisions are subject to any receiver's
 # applicable license agreements with MediaTek Inc.
-$(warning [gps]BOARD_MEDIATEK_USES_GPS = $(BOARD_MEDIATEK_USES_GPS))
-LOCAL_PATH := $(call my-dir)
-include $(call all-makefiles-under,$(LOCAL_PATH))
+
+
+include $(call all-subdir-makefiles)
+

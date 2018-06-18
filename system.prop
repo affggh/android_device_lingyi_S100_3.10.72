@@ -112,6 +112,9 @@ fmradio.driver.enable=1
 ro.config.low_ram=true
 persist.sys.force_highendgfx=true
 
+# OTA
+cm.updater.uri=https://raw.githubusercontent.com/ibrahim1973/ota/blob/dotOS-2.1/api.json
+
 #
 # MTK bits
 #
