@@ -1,5 +1,5 @@
 
-LOCAL_PATH := device/Infinix/x510
+LOCAL_PATH := device/lingxinbao/S100
 
 -include $(LOCAL_PATH)/ProjectConfig.mk
 
@@ -70,7 +70,7 @@ TARGET_KMODULES := true
 TARGET_CPU_MEMCPY_OPT_DISABLE := true
 
 # OTA
-TARGET_OTA_ASSERT_DEVICE := "x510","Infinix_x510","Infinix_x510_sprout","D5110_sprout16"
+TARGET_OTA_ASSERT_DEVICE := "S100","lingyi_S100","Lingyi_S100","lingyi S100", "Lingyi S100"
 #BLOCK_BASED_OTA := false
 
 # Offline charger
@@ -194,9 +194,9 @@ endif
 ifeq ($(RECOVERY_VARIANT),twrp)
 RECOVERY_SDCARD_ON_DATA := true
 TW_THEME := portrait_hdpi
-DEVICE_RESOLUTION := 720x1280
+DEVICE_RESOLUTION := 480x864
 TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
-TW_DEFAULT_LANGUAGE := ru
+TW_DEFAULT_LANGUAGE := cn
 TW_NO_REBOOT_BOOTLOADER := false
 TW_NO_USB_STORAGE := false
 TW_BRIGHTNESS_PATH := "/sys/devices/platform/leds-mt65xx/leds/lcd-backlight/brightness"

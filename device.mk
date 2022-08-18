@@ -4,7 +4,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # The gps config appropriate for this device
 $(call inherit-product, device/common/gps/gps_us_supl.mk)
 
-$(call inherit-product-if-exists, vendor/Infinix/x510/x510-vendor.mk)
+$(call inherit-product-if-exists, vendor/lingyi/S100/S100-vendor.mk)
 
 LOCAL_PATH := device/Infinix/x510
 
@@ -19,8 +19,8 @@ endif
 # Boot animation
 # Select the 720-width one; despite the variables' names, they seem to be
 # used by bootanimation only.
-TARGET_SCREEN_HEIGHT := 1280
-TARGET_SCREEN_WIDTH := 720
+TARGET_SCREEN_HEIGHT := 854
+TARGET_SCREEN_WIDTH := 480
 
 PRODUCT_PACKAGES += \
 	libxlog
@@ -242,7 +242,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	ro.zygote=zygote32 \
 	camera.disable_zsl_mode=1 \
 	ro.mount.fs=EXT4 \
-	persist.sys.usb.config=mtp \
+	persist.sys.usb.config=mtp,adb \
 	ro.hardware=mt6580
 
 ADDITIONAL_DEFAULT_PROPERTIES += \
@@ -254,10 +254,10 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 	ro.oem_unlock_supported=1
 
 PRODUCT_PROPERTY_OVERRIDES += \
-	persist.sys.timezone=Europe/Minsk \
-	ro.product.locale=ru-RU \
-	ro.product.locale.region=RU \
-	ro.product.locale.language=ru
+	persist.sys.timezone=Asia/Shanghai \
+	ro.product.locale=zh-CN \
+	ro.product.locale.region=CN \
+	ro.product.locale.language=zh
 
 # Extended JNI checks
 # The extended JNI checks will cause the system to run more slowly, but they can spot a variety of nasty bugs 
