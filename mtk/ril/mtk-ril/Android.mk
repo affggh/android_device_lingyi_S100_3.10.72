@@ -60,6 +60,7 @@ LOCAL_SHARED_LIBRARIES := \
 
 LOCAL_STATIC_LIBRARIES := \
     mtk-ril-prop-md1 \
+    mtk-ril-prop-md2 \
     libprotobuf-c-nano-enable_malloc \
 
 LOCAL_CFLAGS := -D_GNU_SOURCE -DMTK_RIL -D__CCMNI_SUPPORT__
@@ -149,6 +150,7 @@ endif
 LOCAL_SHARED_LIBRARIES += \
     libcutils libutils
 LOCAL_STATIC_LIBRARIES := \
+    mtk-ril-prop-md2 \
     mtk-ril-prop-md1 \
     libprotobuf-c-nano-enable_malloc \
 
@@ -288,6 +290,7 @@ LOCAL_SHARED_LIBRARIES += \
     libcutils libutils
 LOCAL_STATIC_LIBRARIES := \
     mtk-ril-prop-md2 \
+    mtk-ril-prop-md1 \
     libprotobuf-c-nano-enable_malloc \
 
 LOCAL_CFLAGS += -DRIL_SHLIB

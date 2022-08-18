@@ -11,7 +11,7 @@ $(call inherit-product, device/lingyi/S100/device_S100.mk)
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := S100
-PRODUCT_NAME := omni_S100
+PRODUCT_NAME := lineage_S100
 PRODUCT_BRAND := LINGYI
 PRODUCT_MODEL := S100
 PRODUCT_MANUFACTURER := lingyi

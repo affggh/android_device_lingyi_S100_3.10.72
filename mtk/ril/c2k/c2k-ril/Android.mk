@@ -47,7 +47,7 @@ LOCAL_SHARED_LIBRARIES := \
     libcutils libutils libc2kril libnetutils libc2kutils librilutils
 
 LOCAL_STATIC_LIBRARIES := \
-    c2k-ril-prop
+    c2k-ril-prop mtk-ril-prop-md2 mtk-ril-prop-md1
 
 # for asprinf
 LOCAL_CFLAGS += -D_GNU_SOURCE -D_POSIX_SOURCE

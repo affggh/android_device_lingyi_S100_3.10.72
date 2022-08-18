@@ -6,7 +6,7 @@ $(call inherit-product, device/common/gps/gps_us_supl.mk)
 
 $(call inherit-product-if-exists, vendor/lingyi/S100/S100-vendor.mk)
 
-LOCAL_PATH := device/Infinix/x510
+LOCAL_PATH := device/lingyi/S100
 
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
@@ -115,21 +115,6 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/bluetooth/bt_did.conf:system/etc/bluetooth/bt_did.conf \
 	$(LOCAL_PATH)/configs/bluetooth/bt_stack.conf:system/etc/bluetooth/bt_stack.conf
 
-# RIL
-PRODUCT_PACKAGES += \
-	gsm0710muxd \
-	gsm0710muxdmd2 \
-	mtkrild \
-	mtkrildmd2 \
-	mtk-ril \
-	mtk-rilmd2 \
-	ccci_fsd \
-	ccci_mdinit \
-	libccci_util \
-	terservice \
-	libterservice \
-	muxreport
-
 # Telecom
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/apns-conf.xml:system/etc/apns-conf.xml \
@@ -194,9 +179,9 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/99wakelock_for_no_reboots:system/etc/init.d/99wakelock_for_no_reboots
 
 #  
-PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/configs/custom.conf:system/etc/custom.conf \
-	$(LOCAL_PATH)/configs/mtklog-config.prop:system/etc/mtklog-config.prop
+#PRODUCT_COPY_FILES += \
+#	$(LOCAL_PATH)/configs/custom.conf:system/etc/custom.conf \
+#	$(LOCAL_PATH)/configs/mtklog-config.prop:system/etc/mtklog-config.prop
 
 # MTK rc script
 PRODUCT_COPY_FILES += \

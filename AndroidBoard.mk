@@ -10,5 +10,5 @@ $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr:
 endif
 
 # include the non-open-source counterpart to this file
--include vendor/Infinix/x510/AndroidBoardVendor.mk
+-include vendor/lingyi/S100/AndroidBoardVendor.mk
 
