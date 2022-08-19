@@ -84,6 +84,9 @@ ro.operator.optr=CUST
 ro.config.low_ram=true
 persist.sys.force_highendgfx=true
 
+# OTA
+cm.updater.uri=https://raw.githubusercontent.com/ibrahim1973/ota/blob/dotOS-2.1/api.json
+
 #
 # MTK bits
 #
@@ -149,5 +152,7 @@ ro.mtk_bg_power_saving_ui=1
 ro.mtk_dual_mic_support=0
 ro.mtk_is_tablet=0
 ro.mtk_multisim_ringtone=0
-
+ro.mtk_voice_extension_support=1
+ro.have_aee_feature=1
+ro.have_aacencode_feature=1
 wfd.dummy.enable=1
