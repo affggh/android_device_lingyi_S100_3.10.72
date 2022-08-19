@@ -52,6 +52,7 @@ index 8127e70..a09fd8f 100644
              return false;
          }
 +#endif
+         }
          free(mycon);
          free(fcon);
          if (rc < 0) {

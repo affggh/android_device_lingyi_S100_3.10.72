@@ -2,7 +2,7 @@ LOCAL_PATH:= $(call my-dir)
 
 # ====== 32 bit library =====
 include $(CLEAR_VARS)
-LOCAL_MODULE := libepos
+LOCAL_MODULE := libepos2
 LOCAL_MODULE_CLASS := STATIC_LIBRARIES
 LOCAL_MODULE_PATH =
 LOCAL_MODULE_RELATIVE_PATH =

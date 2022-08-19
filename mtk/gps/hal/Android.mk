@@ -72,7 +72,7 @@ LOCAL_C_INCLUDES := \
 	$(LOCAL_PATH)/inc \
 	$(LOCAL_PATH)/../../kernel-headers
 
-LOCAL_MODULE := gps.$(TARGET_BOARD_PLATFORM)
+LOCAL_MODULE := sgps.$(TARGET_BOARD_PLATFORM)
 
 LOCAL_MODULE_TAGS := optional
 

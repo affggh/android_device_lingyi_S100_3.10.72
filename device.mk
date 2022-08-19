@@ -130,8 +130,8 @@ PRODUCT_PACKAGES += \
 	Torch
 
 # MiraVision
-PRODUCT_PACKAGES += \
-	MiraVision
+#PRODUCT_PACKAGES += \
+#	MiraVision
 
 # EngineerMode
 #PRODUCT_PACKAGES += \

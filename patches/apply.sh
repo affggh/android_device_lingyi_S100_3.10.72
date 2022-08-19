@@ -12,7 +12,6 @@ MYABSPATH=$(readlink -f "$0")
  	done
  	echo "Apply $PATCHNAME -> $PATCHTARGET"
  	cd "$CMBASE/$PATCHTARGET" || exit 1
- 	echo "-  $PATCHBASE/$PATCHNAME"
- 	git apply -v "$PATCHBASE/$PATCHNAME"/* || echo "    Failed!"
+ 	git apply -v "$PATCHBASE/$PATCHNAME"/* || echo -e "\033[41m- Faild\033[0m"
  	cd "$CMBASE"
  done

@@ -4,7 +4,7 @@
 PRODUCT_RELEASE_NAME := S100
 
 # Inherit some common CM stuff.
-$(call inherit-product, vendor/dot/config/common_full_phone.mk)
+$(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
 # Inherit device configuration
 $(call inherit-product, device/lingyi/S100/device_S100.mk)
